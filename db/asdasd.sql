@@ -88,7 +88,7 @@ CREATE TABLE IF NOT EXISTS `tbl_jadwal` (
   PRIMARY KEY (`id_jadwal`)
 ) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
 
--- Membuang data untuk tabel rental.tbl_jadwal: ~0 rows (lebih kurang)
+-- Membuang data untuk tabel rental.tbl_jadwal: ~3 rows (lebih kurang)
 /*!40000 ALTER TABLE `tbl_jadwal` DISABLE KEYS */;
 INSERT INTO `tbl_jadwal` (`id_jadwal`, `id_penyewa`, `id_supir`, `id_mobil`, `supir`, `alamat_sewa`, `tanggal`, `lama_hari`, `jam`, `status_jadwal`) VALUES
 	(16, 9, 0, 1, 'true', 'jalan buntu', '2019-07-16', 3, NULL, 'finish'),
@@ -164,7 +164,7 @@ CREATE TABLE IF NOT EXISTS `tbl_testimoni` (
   PRIMARY KEY (`id_testimoni`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
--- Membuang data untuk tabel rental.tbl_testimoni: ~0 rows (lebih kurang)
+-- Membuang data untuk tabel rental.tbl_testimoni: ~3 rows (lebih kurang)
 /*!40000 ALTER TABLE `tbl_testimoni` DISABLE KEYS */;
 INSERT INTO `tbl_testimoni` (`id_testimoni`, `id_user`, `testimoni`, `waktu`) VALUES
 	(1, 7, 'Mantap banget', '2019-07-13 21:19:18'),
@@ -185,7 +185,7 @@ CREATE TABLE IF NOT EXISTS `tbl_transaksi` (
   UNIQUE KEY `no_invoice` (`no_invoice`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
--- Membuang data untuk tabel rental.tbl_transaksi: ~0 rows (lebih kurang)
+-- Membuang data untuk tabel rental.tbl_transaksi: ~3 rows (lebih kurang)
 /*!40000 ALTER TABLE `tbl_transaksi` DISABLE KEYS */;
 INSERT INTO `tbl_transaksi` (`id_transaksi`, `no_invoice`, `id_jadwal`, `resi`, `tagihan`, `waktu_upload`, `waktu_approve`) VALUES
 	(1, 'INV20190713124315', 16, NULL, 300000, NULL, '2019-07-13 19:12:15'),
