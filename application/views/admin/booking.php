@@ -51,6 +51,13 @@
                     <td><?=$u->supir?></td>
                     <td><?=$u->status_jadwal?></td>
                     <td>
+                      <?php
+                      if($u->status_jadwal=='waiting'){
+                      ?>
+                      <a href="<?=base_url('admin/cancelBook/'.$u->id_jadwal)?>">
+                          <button class="btn btn-sm btn-danger">Cancel</button>
+                      </a>
+                      <?php } ?>
                       <a href="<?=base_url('admin/transaksiBook/'.$u->id_jadwal)?>">
                           <button class="btn btn-sm btn-info">Lihat Transaksi</button>
                       </a>

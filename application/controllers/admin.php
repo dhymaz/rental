@@ -369,10 +369,10 @@ public function edit_mobil($id){
 		$sql = $this->general_model->updateWhereData('tbl_mobil',$data_input,['id_mobil'=>$id]);
 		if($sql){
 			echo "<script>Alert('Data Berhasil Diinput, Silahkan Login!')</script>";
-			redirect(base_url('/admin'));
+			redirect(base_url('admin/lihatmobil'));
 		}else{
 			echo "<script>Alert('Data Gagal Diinput, Silahkan Isikan Dengan Benar!')</script>";
-			redirect(base_url('/admin'));
+			redirect(base_url('admin/lihatmobil'));
 		}
     }
 
@@ -412,9 +412,9 @@ public function approveResi($id){
 	$data2 = $this->general_model->getWhere('tbl_transaksi',['id_transaksi'=>$id])->row();
 	$data3 = $this->general_model->updateWhereData('tbl_jadwal',['id_supir'=>$sql->id_admin,'status_jadwal'=>'ok'],['id_jadwal'=>$data2->id_jadwal]);
 	if($data3){
-		$this->session->set_flashdata('notif',$this->alertz('success','<strong>Selamat!</strong>Data Berhasil Diinput.'));
+		$this->session->set_flashdata('notif',$this->alertz('success','<strong>Selamat!</strong>Data Berhasil Diapprove.'));
 	}else{
-		$this->session->set_flashdata('notif',$this->alertz('danger','<strong>Maaf!</strong>Data Berhasil Diinput.'));
+		$this->session->set_flashdata('notif',$this->alertz('danger','<strong>Maaf!</strong>Data Berhasil Diapprove.'));
 	}
 	redirect(base_url('admin/transaksi'));
 }
@@ -422,7 +422,14 @@ public function approveResi($id){
 public function selesaiBook($id){
 	$data1 = $this->general_model->updateWhereData('tbl_jadwal',['status_jadwal'=>'finish'],['id_jadwal'=>$id]);
 	$data = $this->general_model->updateWhereData('tbl_transaksi',['waktu_approve'=>date('Y-m-d H:i:s')],['id_jadwal'=>$id]);
-	$this->session->set_flashdata('notif',$this->alertz('success','<strong>Selamat!</strong>Data Berhasil Diinput.'));
+	$this->session->set_flashdata('notif',$this->alertz('success','<strong>Selamat!</strong>Data Berhasil Diselesaikan.'));
+	redirect(base_url('admin/transaksi'));
+}
+
+public function cancelBook($id){
+	$data1 = $this->general_model->updateWhereData('tbl_jadwal',['status_jadwal'=>'cancel'],['id_jadwal'=>$id]);
+	$data = $this->general_model->updateWhereData('tbl_transaksi',['waktu_approve'=>date('Y-m-d H:i:s')],['id_jadwal'=>$id]);
+	$this->session->set_flashdata('notif',$this->alertz('success','<strong>Selamat!</strong>Data Berhasil Dicancel.'));
 	redirect(base_url('admin/transaksi'));
 }
 

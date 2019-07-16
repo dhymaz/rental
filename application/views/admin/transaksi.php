@@ -68,7 +68,7 @@
                     if(isset($resigambar[4])){
                     ?>
                     <td><a href="<?=base_url($u->resi)?>" target="_blank"><?=$resigambar[4]?></a></td>
-                    <?php }elseif($u->waktu_approve==null && $u->res==null){ ?>
+                    <?php }elseif($u->waktu_approve==null && $u->resi==null){ ?>
                     <td><font color="red">Resi Belum diupload</font></td>
                     <?php }else{?>
                     <td><font color="green">Bayar Cash</font></td>
@@ -78,13 +78,13 @@
                     <td><?=$u->waktu_approve?></td>
                     <td>
                       <?php
-                      if(isset($u->resi) && $u->waktu_approve==null){
+                      if($u->status_jadwal=='waiting'){
                       ?>
                       <a href="<?=base_url('admin/approveResi/'.$u->id_transaksi)?>" onclick="return confirm('Apakahkah anda Yakin akan Approve ini?')"><button class="btn btn-sm btn-success">Approve</button></a>
                       <?php
-                      }elseif($u->waktu_approve==null){
+                      }elseif($u->status_jadwal=='ok'){
                       ?>
-                      <a href="<?=base_url('admin/selesaiBook/'.$u->id_jadwal)?>" onclick="return confirm('Apakahkah anda Yakin akan menyelesaikan pinjaman ini?')"><button class="btn btn-sm btn-danger">Selesai</button></a>
+                      <a href="<?=base_url('admin/selesaiBook/'.$u->id_jadwal)?>" onclick="return confirm('Apakahkah anda Yakin akan menyelesaikan pinjaman ini?')"><button class="btn btn-sm btn-info">Selesai</button></a>
                       <?php } ?>
                     </td>
                   </tr>
@@ -108,14 +108,14 @@
                     <td><?=$booking->waktu_upload?></td>
                     <td><?=$booking->waktu_approve?></td>
                     <td>
-                        <?php
-                        if(isset($booking->resi)){
+                      <?php
+                      if($booking->status_jadwal=='waiting'){
                       ?>
                       <a href="<?=base_url('admin/approveResi/'.$booking->id_transaksi)?>" onclick="return confirm('Apakahkah anda Yakin akan Approve ini?')"><button class="btn btn-sm btn-success">Approve</button></a>
                       <?php
-                      }else{
+                      }elseif($booking->status_jadwal=='ok'){
                       ?>
-                      <a href="<?=base_url('admin/selesaiBook/'.$booking->id_jadwal)?>" onclick="return confirm('Apakahkah anda Yakin akan menyelesaikan pinjaman ini?')"><button class="btn btn-sm btn-danger">Selesai</button></a>
+                      <a href="<?=base_url('admin/selesaiBook/'.$booking->id_jadwal)?>" onclick="return confirm('Apakahkah anda Yakin akan menyelesaikan pinjaman ini?')"><button class="btn btn-sm btn-info">Selesai</button></a>
                       <?php } ?>
                     </td>
                   </tr>

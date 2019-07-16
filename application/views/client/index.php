@@ -60,6 +60,7 @@ $judul = "RC Rental Mobil";
           <!-- <li><a href="#services">Layanan</a></li> -->
           <li><a href="#portfolio">Foto</a></li>
           <li><a href="#team">Pengemudi</a></li>
+          <li><a href="#" data-target="#modalSyarat" data-toggle="modal">Syarat & Ketentuan</a></li>
           <!-- <li><a href="#testimonials">Testimoni</a></li> -->
           <?php
           if(isset($this->session->nik)){
@@ -116,7 +117,8 @@ $judul = "RC Rental Mobil";
                                 <td><?=$t->harga?></td>
                                 <td><?=$t->tagihan?></td>
                                 <?php
-                                if($t->resi==null){
+                                // var_dump($t);
+                                if($t->status_jadwal=='waiting' && $t->resi==NULL){
                                 ?>
                                 <td>
                                 <form action="<?=base_url('client/uploadResi/'.$t->id_transaksi)?>" enctype="multipart/form-data" method="POST">
@@ -124,8 +126,10 @@ $judul = "RC Rental Mobil";
                                   <button type="submit">Simpan</button>
                                 </form>
                                 </td>
-                                <?php }else{ ?>
+                                <?php }elseif($t->status_jadwal=='ok' && $t->resi!=NULL){ ?>
                                   <td><a href="<?=base_url($t->resi)?>" target="_blank">Lihat Resi</a></td>
+                                <?php }else{ ?>
+                                  <td><?=$t->status_jadwal?></td>
                                 <?php } ?>
                               </tr>
                             <?php } ?>
@@ -309,6 +313,27 @@ $judul = "RC Rental Mobil";
     </form>
   </div>
   
+
+              <div class="modal fade" id="modalSyarat" tabindex="-1" role="dialog">
+                  <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title">Data Saya</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        
+                      </div>
+                      <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Simpan</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                      </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
 
 <div align="center"> 
     <?php
